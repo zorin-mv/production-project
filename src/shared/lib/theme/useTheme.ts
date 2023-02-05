@@ -1,9 +1,9 @@
+import { useContext } from "react";
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
   ThemeContext,
-} from "app/providers/theme-provider/lib/theme.context";
-import { useContext } from "react";
+} from "shared/lib/theme/theme.context";
 
 interface IUseThemeResult {
   toogleTheme: () => void;

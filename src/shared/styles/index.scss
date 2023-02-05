@@ -4,14 +4,16 @@
 @import "themes/dark";
 
 .app {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 50px;
-
   font: var(--font-m);
 
   background-color: var(--bg-color);
   color: var(--primary-color);
 
   min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px;
 }
