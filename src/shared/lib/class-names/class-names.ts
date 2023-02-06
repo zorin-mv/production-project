@@ -4,12 +4,11 @@ export const classNames = (
   className: string,
   additional: string[] = [],
   mods: TMods = {}
-): string => {
-  return [
+): string =>
+  [
     className,
     ...additional.filter(Boolean),
     Object.entries(mods)
       .filter(([_, value]) => value)
       .map(([className]) => className),
-  ].join(" ");
-};
+  ].join(' ');

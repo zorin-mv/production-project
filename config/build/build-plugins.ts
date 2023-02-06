@@ -1,13 +1,8 @@
-import { ReactRefreshPlugin } from "@pmmmwh/react-refresh-webpack-plugin";
-import HTMLWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {
-  DefinePlugin,
-  HotModuleReplacementPlugin,
-  ProgressPlugin,
-  WebpackPluginInstance,
-} from "webpack";
-import { IBuildOptions } from "./types/config";
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { DefinePlugin, ProgressPlugin, WebpackPluginInstance } from 'webpack';
+import { IBuildOptions } from './types/config';
 
 export const buildPlugins = ({
   paths,
@@ -18,11 +13,9 @@ export const buildPlugins = ({
   }),
   new ProgressPlugin(),
   new MiniCssExtractPlugin({
-    filename: "css/[name].[contenthash:8].css",
-    chunkFilename: "css/[name].[contenthash:8].css",
+    filename: 'css/[name].[contenthash:8].css',
+    chunkFilename: 'css/[name].[contenthash:8].css',
   }),
   new DefinePlugin({ __IS_DEV__: JSON.stringify(isDev) }),
-  ...(isDev
-    ? [new ReactRefreshPlugin(), new HotModuleReplacementPlugin()]
-    : []),
+  ...(isDev ? [new ReactRefreshPlugin()] : []),
 ];
