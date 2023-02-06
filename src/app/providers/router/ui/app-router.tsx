@@ -4,12 +4,18 @@ import { Route, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
   return (
-    <Suspense fallback={"Loading ..."}>
-      <Routes>
-        {Object.values(routeConfig).map(({ path, element }) => (
-          <Route key={path} element={element} path={path} />
-        ))}
-      </Routes>
-    </Suspense>
+    <div className="page-wrapper">
+      <Suspense fallback={"Loading ..."}>
+        <Routes>
+          {Object.values(routeConfig).map(({ path, element }) => (
+            <Route
+              key={path}
+              element={<div className="page-wrapper">{element}</div>}
+              path={path}
+            />
+          ))}
+        </Routes>
+      </Suspense>
+    </div>
   );
 };
