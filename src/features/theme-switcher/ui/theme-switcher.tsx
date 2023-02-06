@@ -3,7 +3,7 @@ import LightIcon from "shared/assets/icons/theme-light.svg";
 import { classNames } from "shared/lib/class-names";
 import { Theme } from "shared/lib/theme/theme.context";
 import { useTheme } from "shared/lib/theme/useTheme";
-import { Button, ThemeButton } from "../button";
+import { Button, ThemeButton } from "../../../shared/ui/button";
 import classes from "./theme-switcher.module.scss";
 
 interface IThemeSwitcherProps {
