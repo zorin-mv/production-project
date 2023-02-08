@@ -1,14 +1,14 @@
 type TMods = Record<string, boolean | string>;
 
 export const classNames = (
-  className: string,
+  cls: string,
   additional: string[] = [],
   mods: TMods = {}
 ): string =>
   [
-    className,
+    cls,
     ...additional.filter(Boolean),
-    Object.entries(mods)
+    ...Object.entries(mods)
       .filter(([_, value]) => value)
       .map(([className]) => className),
   ].join(' ');
