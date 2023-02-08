@@ -4,5 +4,7 @@
   "mainPage": "Main Page",
   "mainPageNav": "Main",
   "aboutPageNav": "About Us",
-  "lang": "Русский"
+  "lang": "Русский",
+  "toogle": "Toogle",
+  "loading": "Loading ..."
 }
