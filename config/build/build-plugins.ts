@@ -2,6 +2,7 @@ import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { DefinePlugin, ProgressPlugin, WebpackPluginInstance } from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { IBuildOptions } from './types/config';
 
@@ -19,4 +20,11 @@ export const buildPlugins = ({
   }),
   new DefinePlugin({ __IS_DEV__: JSON.stringify(isDev) }),
   ...(isDev ? [new ReactRefreshPlugin({ overlay: false })] : []),
+  new BundleAnalyzerPlugin({
+    analyzerMode: process.env.STATS as
+      | 'server'
+      | 'static'
+      | 'json'
+      | 'disabled',
+  }),
 ];

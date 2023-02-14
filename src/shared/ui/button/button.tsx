@@ -10,7 +10,6 @@ export const ThemeButton = {
 export type TThemeButton = ValueOf<typeof ThemeButton>;
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
   className?: string;
   theme?: TThemeButton;
 }
