@@ -41,7 +41,7 @@ module.exports = {
       'error',
       {
         markupOnly: true,
-        ignoreAttribute: ['to'],
+        ignoreAttribute: ['to', 'data-testid'],
       },
     ],
     'max-len': ['error', { ignoreComments: true }],
@@ -52,4 +52,12 @@ module.exports = {
     __IS_DEV__: true,
     ValueOf: true,
   },
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
+  ],
 };
