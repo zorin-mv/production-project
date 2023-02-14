@@ -7,5 +7,7 @@
   "lang": "Русский",
   "toogle": "Toogle",
   "loading": "Loading ...",
-  "not found": "Page not found"
+  "not found": "Page not found",
+  "error": "Something went wrong ...",
+  "reloadPage": "Reload Page"
 }

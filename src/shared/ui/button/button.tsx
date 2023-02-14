@@ -1,15 +1,18 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import { classNames } from 'shared/lib/class-names';
+
 import classes from './button.module.scss';
 
-export enum ThemeButton {
-  CLEAR = 'clear',
-}
+export const ThemeButton = {
+  CLEAR: 'clear',
+};
+
+export type TThemeButton = ValueOf<typeof ThemeButton>;
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   className?: string;
-  theme?: ThemeButton;
+  theme?: TThemeButton;
 }
 
 export const Button: FC<IButtonProps> = ({

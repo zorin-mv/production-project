@@ -1,10 +1,12 @@
-export enum AppRoutes {
-  MAIN = 'main',
-  ABOUT = 'about',
-  NOT_FOUND = 'not-found',
-}
+export const AppRoutes = {
+  MAIN: 'main',
+  ABOUT: 'about',
+  NOT_FOUND: 'not-found',
+} as const;
 
-export const RoutePath: Record<AppRoutes, string> = {
+export type TAppRoutes = ValueOf<typeof AppRoutes>;
+
+export const RoutePath: Record<TAppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.NOT_FOUND]: '*',

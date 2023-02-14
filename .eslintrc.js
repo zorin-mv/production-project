@@ -45,8 +45,11 @@ module.exports = {
       },
     ],
     'max-len': ['error', { ignoreComments: true }],
+    'react/jsx-no-useless-fragment': 'off',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
   },
   globals: {
     __IS_DEV__: true,
+    ValueOf: true,
   },
 };

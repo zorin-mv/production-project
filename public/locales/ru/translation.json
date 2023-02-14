@@ -7,5 +7,7 @@
   "lang": "English",
   "toogle": "Toogle",
   "loading": "Загрузка ...",
-  "not found": "Cтраница не найдена"
+  "not found": "Cтраница не найдена",
+  "error": "Что-то пошло не так ...",
+  "reloadPage": "Обновить Страницу"
 }
