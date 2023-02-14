@@ -3,11 +3,12 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
   ThemeContext,
+  TTheme,
 } from 'shared/lib/theme/theme.context';
 
 interface IUseThemeResult {
   toogleTheme: () => void;
-  theme: Theme;
+  theme: TTheme;
 }
 
 export const useTheme = (): IUseThemeResult => {

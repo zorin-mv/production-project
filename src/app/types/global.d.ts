@@ -18,3 +18,5 @@ declare module '*.jpeg';
 declare module '*.jpg';
 
 declare const __IS_DEV__: boolean;
+
+type ValueOf<T> = T[keyof T];
