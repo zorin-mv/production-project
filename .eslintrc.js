@@ -9,6 +9,7 @@ module.exports = {
     'airbnb',
     'prettier',
     'plugin:i18next/recommended',
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,7 +24,9 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
       2,
-      { extensions: ['.js', '.jsx', '.tsx'] },
+      {
+        extensions: ['.js', '.jsx', '.tsx'],
+      },
     ],
     '@typescript-eslint/no-unused-vars': ['warn'],
     'no-unused-vars': 'off',
@@ -44,9 +47,20 @@ module.exports = {
         ignoreAttribute: ['to', 'data-testid'],
       },
     ],
-    'max-len': ['error', { ignoreComments: true }],
+    'max-len': [
+      'error',
+      {
+        ignoreComments: true,
+        code: 100,
+      },
+    ],
     'react/jsx-no-useless-fragment': 'off',
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': [
+      'warn',
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
   },
   globals: {
     __IS_DEV__: true,
