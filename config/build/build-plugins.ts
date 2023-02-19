@@ -9,22 +9,31 @@ import { IBuildOptions } from './types/config';
 export const buildPlugins = ({
   paths,
   isDev,
-}: IBuildOptions): WebpackPluginInstance[] => [
-  new HTMLWebpackPlugin({
-    template: paths.html,
-  }),
-  new ProgressPlugin(),
-  new MiniCssExtractPlugin({
-    filename: 'css/[name].[contenthash:8].css',
-    chunkFilename: 'css/[name].[contenthash:8].css',
-  }),
-  new DefinePlugin({ __IS_DEV__: JSON.stringify(isDev) }),
-  ...(isDev ? [new ReactRefreshPlugin({ overlay: false })] : []),
-  new BundleAnalyzerPlugin({
-    analyzerMode: process.env.STATS as
-      | 'server'
-      | 'static'
-      | 'json'
-      | 'disabled',
-  }),
-];
+}: IBuildOptions): WebpackPluginInstance[] => {
+  const plugins = [
+    new HTMLWebpackPlugin({
+      template: paths.html,
+    }),
+    new ProgressPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].css',
+    }),
+    new DefinePlugin({ __IS_DEV__: JSON.stringify(isDev) }),
+  ];
+
+  if (isDev) {
+    plugins.push(new ReactRefreshPlugin({ overlay: false }));
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: process.env.STATS as
+          | 'server'
+          | 'static'
+          | 'json'
+          | 'disabled',
+      })
+    );
+  }
+
+  return plugins;
+};

@@ -6,6 +6,18 @@
   transition: width 0.3s;
 }
 
+.swithers {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .lang {
+    margin-left: 20px;
+  }
+}
+
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
@@ -16,17 +28,5 @@
     .lang {
       margin-left: 0;
     }
-  }
-}
-
-.swithers {
-  position: absolute;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-  .lang {
-    margin-left: 20px;
   }
 }
