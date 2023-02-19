@@ -1,6 +1,6 @@
 import { addDecorator } from '@storybook/react';
-import { RouterDecorator } from '../../src/shared/config/storybook/router-decorator';
-import { StyleDecorator } from '../../src/shared/config/storybook/style-decorator';
+import { RouterDecorator } from '../../src/shared/lib/storybook/router-decorator';
+import { StyleDecorator } from '../../src/shared/lib/storybook/style-decorator';
 import { Theme } from '../../src/shared/lib/theme/theme.context';
 import i18n from './i18next.js';
 
