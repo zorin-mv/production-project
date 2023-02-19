@@ -8,6 +8,15 @@
 
 .collapsed {
   width: var(--sidebar-width-collapsed);
+
+  .swithers {
+    flex-direction: column;
+    align-items: center;
+
+    .lang {
+      margin-left: 0;
+    }
+  }
 }
 
 .swithers {

@@ -4,7 +4,8 @@ import { classNames } from 'shared/lib/class-names';
 import classes from './button.module.scss';
 
 export const ThemeButton = {
-  CLEAR: 'clear',
+  clear: 'clear',
+  outline: 'outline',
 };
 
 export type TThemeButton = ValueOf<typeof ThemeButton>;
