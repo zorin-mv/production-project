@@ -5,10 +5,10 @@
   "mainPageNav": "Главная",
   "aboutPageNav": "О сайте",
   "lang": "English",
-  "toogle": "Toogle",
   "loading": "Загрузка ...",
   "not found": "Cтраница не найдена",
   "error": "Что-то пошло не так ...",
   "reloadPage": "Обновить Страницу",
-  "langShort": "EN"
+  "langShort": "EN",
+  "Login": "Войти"
 }

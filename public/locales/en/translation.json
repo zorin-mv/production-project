@@ -5,10 +5,10 @@
   "mainPageNav": "Main",
   "aboutPageNav": "About Us",
   "lang": "Русский",
-  "toogle": "Toogle",
   "loading": "Loading ...",
   "not found": "Page not found",
   "error": "Something went wrong ...",
   "reloadPage": "Reload Page",
-  "langShort": "RU"
+  "langShort": "RU",
+  "Login": "Sign in"
 }

@@ -1,4 +1,5 @@
 import { addDecorator } from '@storybook/react';
+import { withThemes } from 'storybook-addon-themes';
 import { RouterDecorator } from '../../src/shared/lib/storybook/router-decorator';
 import { StyleDecorator } from '../../src/shared/lib/storybook/style-decorator';
 import { Theme } from '../../src/shared/lib/theme/theme.context';
@@ -11,15 +12,18 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  themes: [
-    {
-      name: Theme.LIGHT,
-      class: ['app', Theme.LIGHT],
-      default: true,
-      color: '#e8e8ea',
-    },
-    { name: Theme.DARK, class: ['app', Theme.DARK], color: '#090949' },
-  ],
+  themes: {
+    default: 'light',
+    clearable: false,
+    list: [
+      {
+        name: Theme.LIGHT,
+        class: ['app', Theme.LIGHT],
+        color: '#e8e8ea',
+      },
+      { name: Theme.DARK, class: ['app', Theme.DARK], color: '#090949' },
+    ],
+  },
   i18n,
   locale: 'ru',
   locales: {
@@ -30,3 +34,4 @@ export const parameters = {
 
 addDecorator(StyleDecorator);
 addDecorator(RouterDecorator);
+addDecorator(withThemes);

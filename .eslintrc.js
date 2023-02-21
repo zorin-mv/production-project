@@ -19,7 +19,13 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'i18next'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'prettier',
+    'i18next',
+    'react-hooks',
+  ],
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
@@ -61,6 +67,8 @@ module.exports = {
         allow: ['warn', 'error'],
       },
     ],
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
   globals: {
     __IS_DEV__: true,
