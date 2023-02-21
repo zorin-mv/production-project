@@ -16,12 +16,6 @@
   background: none;
 }
 
-.backgroundInverted {
-  background: var(--inverted-bg-color);
-  color: var(--inverted-primary-color);
-  border: none;
-}
-
 .background {
   color: var(--primary-color);
   border: none;
@@ -60,4 +54,18 @@
   width: var(--font-line-xl);
   height: var(--font-line-xl);
   font-size: var(--font-size-l);
+}
+
+.invertedColor {
+  color: var(--inverted-primary-color);
+}
+
+.invertedColor.background {
+  background: var(--inverted-bg-color);
+  color: var(--inverted-primary-color);
+}
+
+.invertedColor.outline {
+  border: 1px solid var(--inverted-primary-color);
+  color: var(--inverted-primary-color);
 }

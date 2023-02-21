@@ -7,7 +7,6 @@ export const ButtonTheme = {
   CLEAR: 'clear',
   OUTLINE: 'outline',
   BACKGROUND: 'background',
-  BACKGROUND_INVERTED: 'backgroundInverted',
 } as const;
 
 export const ButtonSize = {
@@ -24,6 +23,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: TButtonTheme;
   square?: boolean;
   size?: TButtonSize;
+  isColorInverted?: boolean;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -32,6 +32,7 @@ export const Button: FC<IButtonProps> = ({
   theme,
   square,
   size = ButtonSize.M,
+  isColorInverted,
   ...props
 }) => (
   <button
@@ -40,6 +41,7 @@ export const Button: FC<IButtonProps> = ({
       [className, classes[theme], classes[size]],
       {
         [classes.square]: square,
+        [classes.invertedColor]: isColorInverted,
       }
     )}
     type="button"

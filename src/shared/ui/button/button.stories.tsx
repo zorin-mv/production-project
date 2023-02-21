@@ -38,10 +38,24 @@ Clear.args = {
   theme: ButtonTheme.CLEAR,
 };
 
+export const ClearInverted = Template.bind({});
+ClearInverted.args = {
+  children: 'Button',
+  theme: ButtonTheme.CLEAR,
+  isColorInverted: true,
+};
+
 export const Outline = Template.bind({});
 Outline.args = {
   children: 'Button',
   theme: ButtonTheme.OUTLINE,
+};
+
+export const OutlineInverted = Template.bind({});
+OutlineInverted.args = {
+  children: 'Button',
+  theme: ButtonTheme.OUTLINE,
+  isColorInverted: true,
 };
 
 export const Background = Template.bind({});
@@ -53,21 +67,24 @@ Background.args = {
 export const BackgroundInverted = Template.bind({});
 BackgroundInverted.args = {
   children: 'Button',
-  theme: ButtonTheme.BACKGROUND_INVERTED,
+  theme: ButtonTheme.BACKGROUND,
+  isColorInverted: true,
 };
 
 export const Square = Template.bind({});
 Square.args = {
   children: '>',
   square: true,
-  theme: ButtonTheme.BACKGROUND_INVERTED,
+  theme: ButtonTheme.BACKGROUND,
+  isColorInverted: true,
 };
 
 export const SquareSizeM = Template.bind({});
 SquareSizeM.args = {
   children: '>',
   square: true,
-  theme: ButtonTheme.BACKGROUND_INVERTED,
+  theme: ButtonTheme.BACKGROUND,
+  isColorInverted: true,
   size: ButtonSize.M,
 };
 
@@ -75,7 +92,8 @@ export const SquareSizeL = Template.bind({});
 SquareSizeL.args = {
   children: '>',
   square: true,
-  theme: ButtonTheme.BACKGROUND_INVERTED,
+  theme: ButtonTheme.BACKGROUND,
+  isColorInverted: true,
   size: ButtonSize.L,
 };
 
@@ -83,6 +101,7 @@ export const SquareSizeXL = Template.bind({});
 SquareSizeXL.args = {
   children: '>',
   square: true,
-  theme: ButtonTheme.BACKGROUND_INVERTED,
+  theme: ButtonTheme.BACKGROUND,
+  isColorInverted: true,
   size: ButtonSize.XL,
 };

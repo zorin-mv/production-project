@@ -1,7 +1,7 @@
 import { LangSwitcher } from 'features/lang-switcher';
 import { ThemeSwitcher } from 'features/theme-switcher';
-import { t } from 'i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import AboutIcon from 'shared/assets/icons/about-us.svg';
 import MainIcon from 'shared/assets/icons/main-page.svg';
 import { RoutePath } from 'shared/constant';
@@ -17,6 +17,7 @@ interface ISidebarProps {
 
 export const Sidebar = ({ className }: ISidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { t } = useTranslation();
 
   const onToggle = () => setCollapsed((prev) => !prev);
   return (
@@ -30,7 +31,8 @@ export const Sidebar = ({ className }: ISidebarProps) => {
         data-testid="sidebar-toggle"
         onClick={onToggle}
         className={classes.collapseBtn}
-        theme="backgroundInverted"
+        theme="background"
+        isColorInverted
         square
         size={ButtonSize.L}
       >
