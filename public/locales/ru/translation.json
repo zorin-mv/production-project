@@ -10,5 +10,7 @@
   "error": "Что-то пошло не так ...",
   "reloadPage": "Обновить Страницу",
   "langShort": "EN",
-  "Login": "Войти"
+  "Login": "Войти",
+  "decrement": "Уменьшить",
+  "increment": " Увеличить"
 }
