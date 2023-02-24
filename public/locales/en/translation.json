@@ -10,5 +10,7 @@
   "error": "Something went wrong ...",
   "reloadPage": "Reload Page",
   "langShort": "RU",
-  "Login": "Sign in"
+  "Login": "Sign in",
+  "increment": "Increment",
+  "decrement": "Decrement"
 }

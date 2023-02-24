@@ -1,5 +1,6 @@
 import { App } from 'app/app';
 import { ErrorBoundary } from 'app/providers/error-boundary';
+import { StoreProvider } from 'app/providers/store-provider';
 import { Suspense } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,14 +11,16 @@ import { PageLoader } from 'widgets/page-loader';
 import { ThemeProvider } from './app/providers/theme-provider';
 
 render(
-  <BrowserRouter>
-    <ErrorBoundary>
-      <ThemeProvider>
-        <Suspense fallback={<PageLoader />}>
-          <App />
-        </Suspense>
-      </ThemeProvider>
-    </ErrorBoundary>
-  </BrowserRouter>,
+  <StoreProvider>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <Suspense fallback={<PageLoader />}>
+            <App />
+          </Suspense>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </BrowserRouter>
+  </StoreProvider>,
   document.getElementById('root')
 );
