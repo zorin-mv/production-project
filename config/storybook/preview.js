@@ -13,15 +13,19 @@ export const parameters = {
     },
   },
   themes: {
-    default: 'light',
+    default: Theme.LIGHT,
     clearable: false,
     list: [
       {
         name: Theme.LIGHT,
-        class: ['app', Theme.LIGHT],
+        class: ['app', 'storybook-app', Theme.LIGHT],
         color: '#e8e8ea',
       },
-      { name: Theme.DARK, class: ['app', Theme.DARK], color: '#090949' },
+      {
+        name: Theme.DARK,
+        class: ['app', 'storybook-app', Theme.DARK],
+        color: '#090949',
+      },
     ],
   },
   i18n,

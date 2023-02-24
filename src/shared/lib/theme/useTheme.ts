@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
@@ -13,6 +13,13 @@ interface IUseThemeResult {
 
 export const useTheme = (): IUseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    document.body.classList.remove(
+      theme === Theme.DARK ? Theme.LIGHT : Theme.DARK
+    );
+    document.body.classList.add(theme);
+  }, [theme]);
 
   const toogleTheme = () => {
     const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;

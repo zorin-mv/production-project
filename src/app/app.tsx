@@ -6,10 +6,10 @@ import { Sidebar } from 'widgets/sidebar';
 import { AppRouter } from './providers/router';
 
 export const App = () => {
-  const { theme } = useTheme();
+  useTheme();
 
   return (
-    <div className={classNames('app', [theme])}>
+    <div className={classNames('app')}>
       <NavBar />
       <div className="content-page">
         <Sidebar />
