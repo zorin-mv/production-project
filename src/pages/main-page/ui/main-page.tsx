@@ -1,4 +1,4 @@
-import { Counter } from 'entities/counter-component';
+import { Counter } from 'entities/counter';
 import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {

@@ -1,4 +1,4 @@
-import { ICounterSchema } from 'entities/counter-component';
+import { ICounterSchema } from 'entities/counter';
 
 export interface IStateSchema {
   counter: ICounterSchema;
