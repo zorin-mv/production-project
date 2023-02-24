@@ -8,14 +8,15 @@
   margin: 0;
 }
 
-body {
+body,
+.storybook-app {
+  color: var(--primary-color);
   font: var(--font-m);
 }
 
 .app {
   min-height: 100vh;
   background-color: var(--bg-color);
-  color: var(--primary-color);
 }
 
 .content-page {
