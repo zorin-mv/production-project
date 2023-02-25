@@ -12,5 +12,7 @@
   "langShort": "RU",
   "Login": "Sign in",
   "increment": "Increment",
-  "decrement": "Decrement"
+  "decrement": "Decrement",
+  "password": "Enter Password",
+  "email": "Enter Email"
 }

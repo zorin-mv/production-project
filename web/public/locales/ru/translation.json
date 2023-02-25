@@ -12,5 +12,7 @@
   "langShort": "EN",
   "Login": "Войти",
   "decrement": "Уменьшить",
-  "increment": " Увеличить"
+  "increment": " Увеличить",
+  "password": "Введите Пароль",
+  "email": "Введите Email"
 }

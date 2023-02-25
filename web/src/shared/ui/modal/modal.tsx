@@ -1,4 +1,11 @@
-import { MouseEvent, ReactNode, useCallback, useEffect } from 'react';
+import {
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { classNames } from 'shared/lib/class-names';
 
 import { Portal } from '../portal';
@@ -9,15 +16,24 @@ interface IModalProps {
   isOpen: boolean;
   className?: string;
   children?: ReactNode;
+  lazy?: boolean;
 }
 
-export const Modal = ({
-  className,
-  children,
-  isOpen,
-  onClose,
-}: IModalProps) => {
-  const mods = { [classes.opened]: isOpen };
+export const Modal = (props: IModalProps) => {
+  const { className, children, isOpen, onClose, lazy } = props;
+
+  const [isMounted, setIsMounted] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
+
+  const openingTimerRef = useRef(null);
+  const closingTimerRef = useRef(null);
+
+  const closeHandler = () => {
+    setIsOpening(false);
+    closingTimerRef.current = setTimeout(() => {
+      onClose();
+    }, 300);
+  };
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -34,6 +50,20 @@ export const Modal = ({
 
   useEffect(() => {
     if (isOpen) {
+      openingTimerRef.current = setTimeout(() => {
+        setIsOpening(true);
+      }, 0);
+      setIsMounted(true);
+    }
+    return () => {
+      setIsOpening(false);
+      clearTimeout(openingTimerRef.current);
+      setIsMounted(false);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
     }
 
@@ -41,6 +71,12 @@ export const Modal = ({
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
+
+  const mods = { [classes.opened]: isOpening };
+
+  if (lazy && !isMounted) {
+    return null;
+  }
 
   return (
     <Portal>
@@ -51,12 +87,12 @@ export const Modal = ({
         <div
           data-testid="modal-overlay"
           className={classes.overlay}
-          onClick={onClose}
+          onMouseDown={closeHandler}
         >
           <div
             data-testid="modal-content"
             className={classes.content}
-            onClick={onContentClick}
+            onMouseDown={onContentClick}
           >
             {children}
           </div>
