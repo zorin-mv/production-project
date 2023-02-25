@@ -1,0 +1,14 @@
+{
+  "name": "production-course-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zorin-mv/production-project.git",
+  "author": "zorin-mv <zorin.maksym@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
