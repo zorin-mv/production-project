@@ -10,13 +10,13 @@ type HTMLInputProps = Omit<
 
 interface IInputProps extends HTMLInputProps {
   className?: string;
-  type?: 'text';
+  type?: string;
   value?: string;
   onChange?: (value: string) => void;
 }
 
 export const Input = memo((props: IInputProps) => {
-  const { className, onChange, value, type, ...restProps } = props;
+  const { className, onChange, value, type = 'text', ...restProps } = props;
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.target.value);
   };

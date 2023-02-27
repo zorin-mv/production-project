@@ -2,7 +2,7 @@ import { AboutPageAsync } from 'pages/about-page';
 import { MainPageAsync } from 'pages/main-page';
 import { NotFoundPage } from 'pages/not-found-page';
 import { RouteProps } from 'react-router-dom';
-import { AppRoutes, RoutePath, TAppRoutes } from 'shared/constant';
+import { AppRoutes, RoutePath, TAppRoutes } from 'shared/constant/app-routes';
 
 export const routeConfig: Record<TAppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {

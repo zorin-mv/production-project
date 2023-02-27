@@ -14,6 +14,12 @@ Default.args = {
   children: 'Button',
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  children: 'Button',
+  disabled: true,
+};
+
 export const SizeM = Template.bind({});
 SizeM.args = {
   children: 'Button',

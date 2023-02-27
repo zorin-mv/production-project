@@ -20,6 +20,6 @@ export const LoginModal = ({
     isOpen={isOpen}
     lazy
   >
-    <LoginForm />
+    <LoginForm onCloseModal={onClose} />
   </Modal>
 );
