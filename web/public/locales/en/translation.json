@@ -14,5 +14,7 @@
   "increment": "Increment",
   "decrement": "Decrement",
   "password": "Enter Password",
-  "email": "Enter Email"
+  "email": "Enter Email",
+  "auth-form": "Auth Form",
+  "Logout": "Logout"
 }

@@ -14,5 +14,7 @@
   "decrement": "Уменьшить",
   "increment": " Увеличить",
   "password": "Введите Пароль",
-  "email": "Введите Email"
+  "email": "Введите Email",
+  "auth-form": "Форма авторизации",
+  "Logout": "Выйти"
 }

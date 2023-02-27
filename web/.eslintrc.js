@@ -70,6 +70,8 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'no-param-reassign': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   globals: {
     __IS_DEV__: true,
@@ -83,4 +85,5 @@ module.exports = {
       },
     },
   ],
+  root: true,
 };

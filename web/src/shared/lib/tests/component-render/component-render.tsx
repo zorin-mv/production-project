@@ -19,7 +19,7 @@ export function componentRender(
   const { route = '/', initialState } = options;
 
   return render(
-    <StoreProvider initialState={initialState}>
+    <StoreProvider initialState={initialState} withoutPersist>
       <MemoryRouter initialEntries={[route]}>
         <I18nextProvider i18n={i18nForTests}>{component}</I18nextProvider>
       </MemoryRouter>

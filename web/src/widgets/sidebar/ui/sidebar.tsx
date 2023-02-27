@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AboutIcon from 'shared/assets/icons/about-us.svg';
 import MainIcon from 'shared/assets/icons/main-page.svg';
-import { RoutePath } from 'shared/constant';
+import { RoutePath } from 'shared/constant/app-routes';
 import { classNames } from 'shared/lib/class-names';
 import { AppLink } from 'shared/ui/app-link';
 import { Button, ButtonSize } from 'shared/ui/button';

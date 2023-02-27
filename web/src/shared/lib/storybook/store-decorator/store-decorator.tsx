@@ -6,7 +6,7 @@ import { IStateSchema } from 'shared/config/store';
 export const StoreDecorator =
   (state: DeepPartial<IStateSchema>) => (StoryComponent: Story) =>
     (
-      <StoreProvider initialState={state}>
+      <StoreProvider initialState={state} withoutPersist>
         <StoryComponent />
       </StoreProvider>
     );

@@ -24,6 +24,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   square?: boolean;
   size?: TButtonSize;
   isColorInverted?: boolean;
+  disabled?: boolean;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -33,6 +34,7 @@ export const Button: FC<IButtonProps> = ({
   square,
   size = ButtonSize.M,
   isColorInverted,
+  disabled,
   ...props
 }) => (
   <button
@@ -42,9 +44,11 @@ export const Button: FC<IButtonProps> = ({
       {
         [classes.square]: square,
         [classes.invertedColor]: isColorInverted,
+        [classes.disabled]: disabled,
       }
     )}
     type="button"
+    disabled={disabled}
     {...props}
   >
     {children}
