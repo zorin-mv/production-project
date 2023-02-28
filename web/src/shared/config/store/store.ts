@@ -1,35 +1,43 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/user';
-import { authReducer } from 'features/auth';
-import { persistReducer } from 'redux-persist';
+import { Persistor, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { authApi } from 'features/auth/model/services/auth/auth.api';
-import { IStateSchema } from './state.schema';
+import { createReducerManager } from './reducer-manager';
+import { IReduxStoreWithManager, IStateSchema } from './state.schema';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: ['counter', 'auth', 'authApi'],
-};
+export function createReduxStore(
+  initialState?: IStateSchema,
+  asyncReducers?: ReducersMapObject<IStateSchema>
+): {
+  persistor: Persistor;
+  store: IReduxStoreWithManager;
+} {
+  const reducers = {
+    ...asyncReducers,
+    user: persistReducer({ key: 'user', storage }, userReducer),
+    [authApi.reducerPath]: authApi.reducer,
+  };
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  auth: authReducer,
-  [authApi.reducerPath]: authApi.reducer,
-});
+  const reduceManager = createReducerManager(reducers);
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-export function createReduxStore(initialState?: IStateSchema) {
-  return configureStore<IStateSchema>({
-    reducer: persistedReducer,
+  const store = configureStore({
+    reducer: reduceManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-    // @ts-ignore
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(
         authApi.middleware
       ),
   });
+
+  (store as IReduxStoreWithManager).reducerManager = reduceManager;
+
+  const persistor = persistStore(store);
+
+  return {
+    persistor,
+    store: store as IReduxStoreWithManager,
+  };
 }

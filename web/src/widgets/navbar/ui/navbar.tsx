@@ -48,7 +48,9 @@ export const NavBar = ({ className }: INavBarProps) => {
 
   return (
     <div className={classNames(classes.navbar, [className])}>
-      <LoginModal isOpen={isAuthModalOpen} onClose={onCloseModal} />
+      {isAuthModalOpen ? (
+        <LoginModal isOpen={isAuthModalOpen} onClose={onCloseModal} />
+      ) : null}
       <div className={classes.content}>
         <Button onClick={onShowModal} theme="clear" isColorInverted>
           {t('Login')}
