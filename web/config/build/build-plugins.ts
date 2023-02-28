@@ -24,6 +24,9 @@ export const buildPlugins = ({
 
   if (isDev) {
     plugins.push(new ReactRefreshPlugin({ overlay: false }));
+  }
+
+  if (process.env.STATS === 'server' || isDev) {
     plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: process.env.STATS as

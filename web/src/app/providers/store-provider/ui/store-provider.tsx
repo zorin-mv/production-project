@@ -1,7 +1,6 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { createReduxStore, IStateSchema } from 'shared/config/store';
 
@@ -9,22 +8,25 @@ interface IStoreProviderProps {
   children?: ReactNode;
   initialState?: DeepPartial<IStateSchema>;
   withoutPersist?: boolean;
+  asyncReducers?: DeepPartial<ReducersMapObject<IStateSchema>>;
 }
 
 export const StoreProvider = ({
   children,
   initialState,
-  withoutPersist = false,
+  withoutPersist = true,
+  asyncReducers,
 }: IStoreProviderProps) => {
-  const createdStore = createReduxStore(initialState as IStateSchema);
+  const { persistor, store } = createReduxStore(
+    initialState as IStateSchema,
+    asyncReducers as ReducersMapObject<IStateSchema>
+  );
 
   if (withoutPersist) {
-    return <Provider store={createdStore}>{children}</Provider>;
+    return <Provider store={store}>{children}</Provider>;
   }
-
-  const persistor = persistStore(createdStore);
   return (
-    <Provider store={createdStore}>
+    <Provider store={store}>
       <PersistGate persistor={persistor}>{children}</PersistGate>
     </Provider>
   );

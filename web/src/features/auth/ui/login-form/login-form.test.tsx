@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { componentRender } from 'shared/lib/tests/component-render';
 
-import { LoginForm } from './login-form';
+import LoginForm from './login-form';
 
 describe('LoginForm', () => {
   test('renders the component', () => {

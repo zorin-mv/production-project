@@ -1,53 +1,73 @@
-import { memo, useCallback } from 'react';
+import { getAuthEmail } from 'features/auth/model/selectors/get-auth-email/get-auth-email';
+import { getAuthPassword } from 'features/auth/model/selectors/get-auth-password/get-auth-password';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { IReduxStoreWithManager } from 'shared/config/store/state.schema';
 import { classNames } from 'shared/lib/class-names';
+import {
+  DynamicModuleLoader,
+  TReducersList,
+} from 'shared/lib/components/dynamic-module-loader/dynamic-module-loader';
 import { Button } from 'shared/ui/button';
 import { Input } from 'shared/ui/input';
 import { Text } from 'shared/ui/text';
 
 import { useLogInMutation } from 'features/auth/model/services/auth/auth.api';
 import { IResponseError } from 'shared/types/error-response.typings';
-import { authActions } from '../../model/slice/auth.slice';
+import { authActions, authReducer } from '../../model/slice/auth.slice';
 import classes from './login-form.module.scss';
 
-import { getAuthState } from '../../model/selectors/get-auth-state/get-auth-state';
-
-interface ILoginFormProps {
+export interface ILoginFormProps {
   className?: string;
   onCloseModal?: () => void;
 }
 
-export const LoginForm = memo(
-  ({ className, onCloseModal }: ILoginFormProps) => {
-    const { t } = useTranslation();
+const initialReducers: TReducersList = { auth: authReducer };
 
-    const [loginUser, { isLoading, error }] = useLogInMutation();
+const LoginForm = memo(({ className, onCloseModal }: ILoginFormProps) => {
+  const { t } = useTranslation();
 
-    const dispatch = useDispatch();
+  const store = useStore() as IReduxStoreWithManager;
 
-    const { email, password } = useSelector(getAuthState);
+  const [loginUser, { isLoading, error }] = useLogInMutation();
 
-    const onChangeEmail = useCallback(
-      (email: string) => {
-        dispatch(authActions.setEmail(email));
-      },
-      [dispatch]
-    );
+  const dispatch = useDispatch();
 
-    const onChangePassword = useCallback(
-      (password: string) => {
-        dispatch(authActions.setPassword(password));
-      },
-      [dispatch]
-    );
+  const email = useSelector(getAuthEmail);
+  const password = useSelector(getAuthPassword);
 
-    const onLoginClick = useCallback(() => {
-      loginUser({ email, password });
-      onCloseModal?.();
-    }, [email, password, loginUser, onCloseModal]);
+  useEffect(() => {
+    store.reducerManager.add('auth', authReducer);
+    dispatch({ type: '@@INIT auth reducer' });
 
-    return (
+    return () => {
+      store.reducerManager.remove('auth');
+      dispatch({ type: '@@DESTROY auth reducer' });
+    };
+  }, []);
+
+  const onChangeEmail = useCallback(
+    (email: string) => {
+      dispatch(authActions.setEmail(email));
+    },
+    [dispatch]
+  );
+
+  const onChangePassword = useCallback(
+    (password: string) => {
+      dispatch(authActions.setPassword(password));
+    },
+    [dispatch]
+  );
+
+  const onLoginClick = useCallback(async () => {
+    await loginUser({ email, password });
+    onCloseModal?.();
+  }, [email, password, loginUser, onCloseModal]);
+
+  return (
+    <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div
         data-testid="login-form"
         className={classNames(classes.loginForm, [className])}
@@ -85,6 +105,8 @@ export const LoginForm = memo(
           {t('Login')}
         </Button>
       </div>
-    );
-  }
-);
+    </DynamicModuleLoader>
+  );
+});
+
+export default LoginForm;
