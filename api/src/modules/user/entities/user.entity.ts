@@ -1,7 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { IsEmail } from 'class-validator';
 import { TRoles, USER_ROLES } from 'src/constants/user-roles';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+
+import { UserProfileEntity } from '../../user-profile/entities/user-profile.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -14,6 +17,7 @@ export class UserEntity {
   created: Date;
 
   @Column({ unique: true })
+  @IsEmail()
   @ApiProperty({ example: 'user@gmail.com' })
   email: string;
 
@@ -30,4 +34,7 @@ export class UserEntity {
   })
   @Exclude()
   publicKey: string;
+
+  @OneToOne(() => UserProfileEntity, (profile) => profile.user)
+  profile: UserProfileEntity;
 }

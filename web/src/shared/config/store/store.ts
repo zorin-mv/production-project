@@ -7,6 +7,12 @@ import { authApi } from 'features/auth/model/services/auth/auth.api';
 import { createReducerManager } from './reducer-manager';
 import { IReduxStoreWithManager, IStateSchema } from './state.schema';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user'],
+};
+
 export function createReduxStore(
   initialState?: IStateSchema,
   asyncReducers?: ReducersMapObject<IStateSchema>
@@ -16,14 +22,16 @@ export function createReduxStore(
 } {
   const reducers = {
     ...asyncReducers,
-    user: persistReducer({ key: 'user', storage }, userReducer),
+    user: userReducer,
     [authApi.reducerPath]: authApi.reducer,
   };
 
   const reduceManager = createReducerManager(reducers);
 
+  const persistedReducer = persistReducer(persistConfig, reduceManager.reduce);
+
   const store = configureStore({
-    reducer: reduceManager.reduce,
+    reducer: persistedReducer,
     devTools: __IS_DEV__,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
@@ -41,3 +49,7 @@ export function createReduxStore(
     store: store as IReduxStoreWithManager,
   };
 }
+
+export type AppDispatch = ReturnType<
+  typeof createReduxStore
+>['store']['dispatch'];

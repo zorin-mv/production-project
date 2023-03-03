@@ -16,5 +16,6 @@
   "password": "Введите Пароль",
   "email": "Введите Email",
   "auth-form": "Форма авторизации",
-  "Logout": "Выйти"
+  "Logout": "Выйти",
+  "profilePageNav": "Профиль"
 }

@@ -1,23 +1,19 @@
 import { LangSwitcher } from 'features/lang-switcher';
 import { ThemeSwitcher } from 'features/theme-switcher';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import AboutIcon from 'shared/assets/icons/about-us.svg';
-import MainIcon from 'shared/assets/icons/main-page.svg';
-import { RoutePath } from 'shared/constant/app-routes';
+import { memo, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { AppLink } from 'shared/ui/app-link';
 import { Button, ButtonSize } from 'shared/ui/button';
+import { sidebarItemsList } from 'widgets/sidebar/model/constants/sidebar-items';
 
+import { SidebarItem } from '../sidebar-item';
 import classes from './sidebar.module.scss';
 
 interface ISidebarProps {
   className?: string;
 }
 
-export const Sidebar = ({ className }: ISidebarProps) => {
+export const Sidebar = memo(({ className }: ISidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { t } = useTranslation();
 
   const onToggle = () => setCollapsed((prev) => !prev);
   return (
@@ -39,18 +35,9 @@ export const Sidebar = ({ className }: ISidebarProps) => {
         {collapsed ? '>' : '<'}
       </Button>
       <div className={classes.items}>
-        <AppLink theme="secondary" to={RoutePath.main} className={classes.item}>
-          <MainIcon className={classes.icon} />
-          <span className={classes.link}>{t('mainPageNav')}</span>
-        </AppLink>
-        <AppLink
-          theme="secondary"
-          to={RoutePath.about}
-          className={classes.item}
-        >
-          <AboutIcon className={classes.icon} />
-          <span className={classes.link}>{t('aboutPageNav')}</span>
-        </AppLink>
+        {sidebarItemsList.map((item) => (
+          <SidebarItem key={item.path} item={item} collapsed={collapsed} />
+        ))}
       </div>
       <div className={classes.swithers}>
         <ThemeSwitcher />
@@ -58,4 +45,4 @@ export const Sidebar = ({ className }: ISidebarProps) => {
       </div>
     </div>
   );
-};
+});

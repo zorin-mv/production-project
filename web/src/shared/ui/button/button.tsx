@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, FC, memo } from 'react';
 import { classNames } from 'shared/lib/class-names';
 
 import classes from './button.module.scss';
@@ -27,30 +27,34 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button: FC<IButtonProps> = ({
-  className,
-  children,
-  theme,
-  square,
-  size = ButtonSize.M,
-  isColorInverted,
-  disabled,
-  ...props
-}) => (
-  <button
-    className={classNames(
-      classes.button,
-      [className, classes[theme], classes[size]],
-      {
-        [classes.square]: square,
-        [classes.invertedColor]: isColorInverted,
-        [classes.disabled]: disabled,
-      }
-    )}
-    type="button"
-    disabled={disabled}
-    {...props}
-  >
-    {children}
-  </button>
-);
+export const Button: FC<IButtonProps> = memo((props: IButtonProps) => {
+  const {
+    className,
+    children,
+    theme,
+    square,
+    size = ButtonSize.M,
+    isColorInverted,
+    disabled,
+    ...restProps
+  } = props;
+
+  return (
+    <button
+      className={classNames(
+        classes.button,
+        [className, classes[theme], classes[size]],
+        {
+          [classes.square]: square,
+          [classes.invertedColor]: isColorInverted,
+          [classes.disabled]: disabled,
+        }
+      )}
+      type="button"
+      disabled={disabled}
+      {...restProps}
+    >
+      {children}
+    </button>
+  );
+});

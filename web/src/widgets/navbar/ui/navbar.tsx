@@ -1,6 +1,6 @@
 import { getUserData } from 'entities/user';
 import { LoginModal } from 'features/auth';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/class-names';
@@ -13,7 +13,7 @@ interface INavBarProps {
   className?: string;
 }
 
-export const NavBar = ({ className }: INavBarProps) => {
+export const NavBar = memo(({ className }: INavBarProps) => {
   const { t } = useTranslation();
 
   const [logout] = useLazyLogOutQuery();
@@ -58,4 +58,4 @@ export const NavBar = ({ className }: INavBarProps) => {
       </div>
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from 'shared/lib/class-names';
 
@@ -14,18 +14,23 @@ export type TAppLinkTheme = ValueOf<typeof AppLinkTheme>;
 interface IAppLinkProps extends LinkProps {
   className?: string;
   theme?: TAppLinkTheme;
+  children?: ReactNode;
 }
 
-export const AppLink: FC<IAppLinkProps> = ({
-  children,
-  className,
-  theme = AppLinkTheme.PRIMARY,
-  ...restProps
-}) => (
-  <Link
-    className={classNames(classes.appLink, [className, classes[theme]])}
-    {...restProps}
-  >
-    {children}
-  </Link>
-);
+export const AppLink = (props: IAppLinkProps) => {
+  const {
+    children,
+    className,
+    theme = AppLinkTheme.PRIMARY,
+    ...restProps
+  } = props;
+
+  return (
+    <Link
+      className={classNames(classes.appLink, [className, classes[theme]])}
+      {...restProps}
+    >
+      {children}
+    </Link>
+  );
+};

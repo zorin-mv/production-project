@@ -10,6 +10,7 @@ import { HttpErrorFilter } from './shared/http-error-filter/http-error-filter';
 
 import { UserAuthModule } from './modules/user-auth/user-auth.module';
 import { UserModule } from './modules/user/user.module';
+import { UserProfileModule } from './modules/user-profile/user-profile.module';
 
 const currentEnv = process.env.NODE_ENV || 'dev';
 
@@ -29,6 +30,7 @@ const currentEnv = process.env.NODE_ENV || 'dev';
     }),
     UserModule,
     UserAuthModule,
+    UserProfileModule,
   ],
   controllers: [AppController],
   providers: [

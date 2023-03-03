@@ -1,9 +1,4 @@
-import { getAuthEmail } from 'features/auth/model/selectors/get-auth-email/get-auth-email';
-import { getAuthPassword } from 'features/auth/model/selectors/get-auth-password/get-auth-password';
-import { memo, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { IReduxStoreWithManager } from 'shared/config/store/state.schema';
+import { memo } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import {
   DynamicModuleLoader,
@@ -13,58 +8,30 @@ import { Button } from 'shared/ui/button';
 import { Input } from 'shared/ui/input';
 import { Text } from 'shared/ui/text';
 
-import { useLogInMutation } from 'features/auth/model/services/auth/auth.api';
 import { IResponseError } from 'shared/types/error-response.typings';
-import { authActions, authReducer } from '../../model/slice/auth.slice';
+import { authReducer } from '../../model/slice/auth.slice';
 import classes from './login-form.module.scss';
+
+import { useLoginFormState } from './login-form.state';
 
 export interface ILoginFormProps {
   className?: string;
-  onCloseModal?: () => void;
+  onSuccess?: () => void;
 }
 
 const initialReducers: TReducersList = { auth: authReducer };
 
-const LoginForm = memo(({ className, onCloseModal }: ILoginFormProps) => {
-  const { t } = useTranslation();
-
-  const store = useStore() as IReduxStoreWithManager;
-
-  const [loginUser, { isLoading, error }] = useLogInMutation();
-
-  const dispatch = useDispatch();
-
-  const email = useSelector(getAuthEmail);
-  const password = useSelector(getAuthPassword);
-
-  useEffect(() => {
-    store.reducerManager.add('auth', authReducer);
-    dispatch({ type: '@@INIT auth reducer' });
-
-    return () => {
-      store.reducerManager.remove('auth');
-      dispatch({ type: '@@DESTROY auth reducer' });
-    };
-  }, []);
-
-  const onChangeEmail = useCallback(
-    (email: string) => {
-      dispatch(authActions.setEmail(email));
-    },
-    [dispatch]
-  );
-
-  const onChangePassword = useCallback(
-    (password: string) => {
-      dispatch(authActions.setPassword(password));
-    },
-    [dispatch]
-  );
-
-  const onLoginClick = useCallback(async () => {
-    await loginUser({ email, password });
-    onCloseModal?.();
-  }, [email, password, loginUser, onCloseModal]);
+const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
+  const {
+    email,
+    error,
+    isLoading,
+    password,
+    onChangeEmail,
+    onChangePassword,
+    onLoginClick,
+    t,
+  } = useLoginFormState({ onSuccess });
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>

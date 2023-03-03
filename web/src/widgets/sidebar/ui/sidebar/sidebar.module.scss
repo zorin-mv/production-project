@@ -30,21 +30,6 @@
   flex-direction: column;
 }
 
-.link {
-  margin-left: 10px;
-  opacity: 1;
-}
-
-.icon {
-  fill: var(--inverted-primary-color);
-}
-
-.item {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-}
-
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
@@ -59,14 +44,6 @@
     button {
       padding: 0;
     }
-  }
-
-  .link {
-    opacity: 0;
-    transition: 0.3s opacity;
-    width: 0;
-    height: 0;
-    margin-left: 0;
   }
 
   .items {

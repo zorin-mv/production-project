@@ -16,5 +16,6 @@
   "password": "Enter Password",
   "email": "Enter Email",
   "auth-form": "Auth Form",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "profilePageNav": "Profile"
 }

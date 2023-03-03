@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { classNames } from 'shared/lib/class-names';
 
 import classes from './text.module.scss';
@@ -16,17 +17,14 @@ interface ITextProps {
   theme?: TTextTheme;
 }
 
-export const Text = ({
-  className,
-  title,
-  text,
-  theme = 'primary',
-}: ITextProps) => (
-  <div
-    data-testid="text-wrapper"
-    className={classNames(classes.textWrapper, [className, classes[theme]])}
-  >
-    {title ? <p className={classes.title}>{title}</p> : null}
-    {text ? <p className={classes.text}>{text}</p> : null}
-  </div>
+export const Text = memo(
+  ({ className, title, text, theme = 'primary' }: ITextProps) => (
+    <div
+      data-testid="text-wrapper"
+      className={classNames(classes.textWrapper, [className, classes[theme]])}
+    >
+      {title ? <p className={classes.title}>{title}</p> : null}
+      {text ? <p className={classes.text}>{text}</p> : null}
+    </div>
+  )
 );

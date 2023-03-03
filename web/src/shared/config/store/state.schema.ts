@@ -4,6 +4,7 @@ import {
   Reducer,
   ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { IProfileSchema } from 'entities/profile';
 import { IUserSchema } from 'entities/user/model/types/user';
 import { IAuthSchema } from 'features/auth/model/types/auth.schema';
 
@@ -11,6 +12,7 @@ export interface IStateSchema {
   user: IUserSchema;
   // Async Reducers
   auth?: IAuthSchema;
+  profile?: IProfileSchema;
 }
 
 export type TStateSchemaKey = keyof IStateSchema;
