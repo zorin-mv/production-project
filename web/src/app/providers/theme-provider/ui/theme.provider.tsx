@@ -6,9 +6,8 @@ import {
   TTheme,
 } from 'shared/lib/theme/theme.context';
 
-const defaultTheme = localStorage.getItem(
-  LOCAL_STORAGE_THEME_KEY ?? Theme.LIGHT
-) as TTheme;
+const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ??
+  Theme.LIGHT) as TTheme;
 
 interface IThemeProvider {
   children?: ReactNode;

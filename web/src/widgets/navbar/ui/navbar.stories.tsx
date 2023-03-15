@@ -25,8 +25,4 @@ WithUser.decorators = [
 
 export const WithoutUser = Template.bind({});
 WithoutUser.args = {};
-WithoutUser.decorators = [
-  StoreDecorator({
-    user: {},
-  }),
-];
+WithoutUser.decorators = [StoreDecorator({})];
