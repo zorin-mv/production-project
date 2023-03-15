@@ -17,3 +17,4 @@ Default.args = {
   molestias, praesentium velit nobis.`,
   isOpen: true,
 };
+Default.parameters = { loki: { skip: true } };

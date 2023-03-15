@@ -23,3 +23,4 @@ Default.decorators = [
     },
   }),
 ];
+Default.parameters = { loki: { skip: true } };

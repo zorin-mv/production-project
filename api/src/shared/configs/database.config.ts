@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { UserEntity } from 'src/modules/user/entities/user.entity';
-
-import { UserProfileEntity } from '../../modules/user-profile/entities/user-profile.entity';
 
 @Injectable()
 export class DatabaseConfig implements TypeOrmOptionsFactory {
@@ -24,8 +21,7 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
       cli: {
         migrationsDir: 'src/migration',
       },
-      entities: [UserEntity, UserProfileEntity],
-      // entities: ['dist/**/*.entity.js'],
+      entities: ['dist/**/*.entity.js'],
     };
   }
 }
