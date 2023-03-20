@@ -1,9 +1,4 @@
-import {
-  BaseQueryFn,
-  FetchArgs,
-  fetchBaseQuery,
-  FetchBaseQueryError,
-} from '@reduxjs/toolkit/query';
+import { BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { userActions } from 'entities/user';
 import { IStateSchema } from 'shared/config/store';
 import { BASE_URL } from 'shared/constant/url';
@@ -19,11 +14,11 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-export const baseQueryWithInterceptors: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
+export const baseQueryWithInterceptors: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+  args,
+  api,
+  extraOptions
+) => {
   const result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
     api.dispatch(userActions.clearUserData());

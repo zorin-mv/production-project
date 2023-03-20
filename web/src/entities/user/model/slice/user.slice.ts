@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { authApi } from 'features/auth/model/services/auth/auth.api';
+import { authApi } from 'features/auth/model/services/auth-api/auth.api';
 import { IUserSchema } from '../types/user';
 
 const initialState: IUserSchema = {};
@@ -20,21 +20,11 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        authApi.endpoints.logIn.matchFulfilled,
-        (state, { payload }) => {
-          state.token = payload.token;
-          state.user = payload.user;
-        }
-      )
-      .addMatcher(authApi.endpoints.logOut.matchRejected, (state) => {
-        state.token = '';
-        state.user = null;
+      .addMatcher(authApi.endpoints.logIn.matchFulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.user = payload.user;
       })
-      .addMatcher(authApi.endpoints.logOut.matchFulfilled, (state) => {
-        state.token = '';
-        state.user = null;
-      });
+      .addMatcher(authApi.endpoints.logOut.matchRejected, () => initialState);
   },
 });
 

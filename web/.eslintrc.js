@@ -19,13 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'prettier',
-    'i18next',
-    'react-hooks',
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'i18next', 'react-hooks'],
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
@@ -57,7 +51,7 @@ module.exports = {
       'error',
       {
         ignoreComments: true,
-        code: 100,
+        code: 120,
       },
     ],
     'react/jsx-no-useless-fragment': 'off',
@@ -76,6 +70,7 @@ module.exports = {
   globals: {
     __IS_DEV__: true,
     ValueOf: true,
+    DeepPartial: true,
   },
   overrides: [
     {

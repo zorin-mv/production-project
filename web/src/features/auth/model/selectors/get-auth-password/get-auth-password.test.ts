@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { IStateSchema } from 'shared/config/store';
 
 import { getAuthPassword } from './get-auth-password';

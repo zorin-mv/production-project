@@ -11,8 +11,8 @@ import { PageLoader } from 'widgets/page-loader';
 import { ThemeProvider } from './app/providers/theme-provider';
 
 render(
-  <StoreProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
       <ErrorBoundary>
         <ThemeProvider>
           <Suspense fallback={<PageLoader />}>
@@ -20,7 +20,7 @@ render(
           </Suspense>
         </ThemeProvider>
       </ErrorBoundary>
-    </BrowserRouter>
-  </StoreProvider>,
+    </StoreProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );

@@ -1,9 +1,10 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { profileApi } from 'entities/profile';
 import { userReducer } from 'entities/user';
+import { authApi } from 'features/auth';
 import { Persistor, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { authApi } from 'features/auth/model/services/auth/auth.api';
 import { createReducerManager } from './reducer-manager';
 import { IReduxStoreWithManager, IStateSchema } from './state.schema';
 
@@ -24,32 +25,31 @@ export function createReduxStore(
     ...asyncReducers,
     user: userReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
   };
 
   const reduceManager = createReducerManager(reducers);
 
-  const persistedReducer = persistReducer(persistConfig, reduceManager.reduce);
+  const persistedReducer = persistReducer(persistConfig, reduceManager.reduce as Reducer<CombinedState<IStateSchema>>);
 
   const store = configureStore({
     reducer: persistedReducer,
     devTools: __IS_DEV__,
     preloadedState: initialState,
+    // @ts-ignore
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({ serializableCheck: false }).concat(
-        authApi.middleware
-      ),
+      getDefaultMiddleware({ serializableCheck: false }).concat(authApi.middleware, profileApi.middleware),
   });
-
-  (store as IReduxStoreWithManager).reducerManager = reduceManager;
+  // @ts-ignore
+  store.reducerManager = reduceManager;
 
   const persistor = persistStore(store);
 
   return {
     persistor,
-    store: store as IReduxStoreWithManager,
+    // @ts-ignore
+    store,
   };
 }
 
-export type AppDispatch = ReturnType<
-  typeof createReduxStore
->['store']['dispatch'];
+export type AppDispatch = ReturnType<typeof createReduxStore>['store']['dispatch'];

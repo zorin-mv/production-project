@@ -5,9 +5,7 @@ import { Modal } from './modal';
 
 describe('Modal', () => {
   test('renders without errors', () => {
-    const { getByTestId } = componentRender(
-      <Modal isOpen onClose={() => {}} />
-    );
+    const { getByTestId } = componentRender(<Modal isOpen onClose={() => {}} />);
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
@@ -22,9 +20,7 @@ describe('Modal', () => {
 
   test('calls onClose when overlay is clicked', async () => {
     const handleClose = jest.fn();
-    const { getByTestId } = componentRender(
-      <Modal isOpen onClose={handleClose} />
-    );
+    const { getByTestId } = componentRender(<Modal isOpen onClose={handleClose} />);
     const overlay = getByTestId('modal-overlay');
     fireEvent.mouseDown(overlay);
 

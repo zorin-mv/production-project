@@ -1,11 +1,4 @@
-import {
-  MouseEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MouseEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
 
 import { Portal } from '../portal';
@@ -25,8 +18,8 @@ export const Modal = (props: IModalProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
-  const openingTimerRef = useRef(null);
-  const closingTimerRef = useRef(null);
+  const openingTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const closingTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const closeHandler = () => {
     setIsOpening(false);
@@ -80,20 +73,9 @@ export const Modal = (props: IModalProps) => {
 
   return (
     <Portal>
-      <div
-        data-testid="modal"
-        className={classNames(classes.modal, [className], mods)}
-      >
-        <div
-          data-testid="modal-overlay"
-          className={classes.overlay}
-          onMouseDown={closeHandler}
-        >
-          <div
-            data-testid="modal-content"
-            className={classes.content}
-            onMouseDown={onContentClick}
-          >
+      <div data-testid="modal" className={classNames(classes.modal, [className], mods)}>
+        <div data-testid="modal-overlay" className={classes.overlay} onMouseDown={closeHandler}>
+          <div data-testid="modal-content" className={classes.content} onMouseDown={onContentClick}>
             {children}
           </div>
         </div>

@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { getAuthEmail } from 'features/auth/model/selectors/get-auth-email/get-auth-email';
 import { IStateSchema } from 'shared/config/store';
 

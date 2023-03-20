@@ -1,6 +1,7 @@
 import { TCurrency } from 'shared/constant/common';
 
 export interface IProfile {
+  id: string;
   firstName: string;
   lastName: string;
   age: number;
@@ -12,5 +13,7 @@ export interface IProfile {
 
 export interface IProfileSchema {
   readonly: boolean;
+  isLoading: boolean;
   data?: IProfile;
+  error?: string;
 }

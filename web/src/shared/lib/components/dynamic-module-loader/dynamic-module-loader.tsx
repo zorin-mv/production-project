@@ -1,16 +1,11 @@
 import { Reducer } from '@reduxjs/toolkit';
 import { FC, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import {
-  IReduxStoreWithManager,
-  TStateSchemaKey,
-} from 'shared/config/store/state.schema';
+import { IReduxStoreWithManager, TStateSchemaKey } from 'shared/config/store/state.schema';
 
 export type TReducersList = {
   [name in TStateSchemaKey]?: Reducer;
 };
-
-type TReducersListEntry = [TStateSchemaKey, Reducer];
 
 interface DynamicModuleLoaderProps {
   reducers: TReducersList;
@@ -24,15 +19,15 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    Object.entries(reducers).forEach(([name, reducer]: TReducersListEntry) => {
-      store.reducerManager.add(name, reducer);
+    Object.entries(reducers).forEach(([name, reducer]) => {
+      store.reducerManager.add(name as TStateSchemaKey, reducer);
       dispatch({ type: `@INIT ${name} reducer` });
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([name, _]: TReducersListEntry) => {
-          store.reducerManager.remove(name);
+        Object.entries(reducers).forEach(([name, _]) => {
+          store.reducerManager.remove(name as TStateSchemaKey);
           dispatch({ type: `@DESTROY ${name} reducer` });
         });
       }

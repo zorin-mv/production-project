@@ -6,7 +6,7 @@ import { getAuthEmail } from '../../model/selectors/get-auth-email/get-auth-emai
 import { getAuthPassword } from '../../model/selectors/get-auth-password/get-auth-password';
 import { authActions } from '../../model/slice/auth.slice';
 
-import { useLogInMutation } from '../../model/services/auth/auth.api';
+import { useLogInMutation } from '../../model/services/auth-api/auth.api';
 
 interface IUseLoginFormStateProps {
   onSuccess: () => void;

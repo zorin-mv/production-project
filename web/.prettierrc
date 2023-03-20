@@ -17,5 +17,5 @@
   "arrowParens": "always",
   "trailingComma": "es5",
   "endOfLine": "auto",
-  "printWidth": 80
+  "printWidth": 120
 }
