@@ -6,10 +6,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { IBuildOptions } from './types/config';
 
-export const buildPlugins = ({
-  paths,
-  isDev,
-}: IBuildOptions): WebpackPluginInstance[] => {
+export const buildPlugins = ({ paths, isDev }: IBuildOptions): WebpackPluginInstance[] => {
   const plugins = [
     new HTMLWebpackPlugin({
       template: paths.html,
@@ -29,11 +26,7 @@ export const buildPlugins = ({
   if (process.env.STATS === 'server' || isDev) {
     plugins.push(
       new BundleAnalyzerPlugin({
-        analyzerMode: process.env.STATS as
-          | 'server'
-          | 'static'
-          | 'json'
-          | 'disabled',
+        analyzerMode: process.env.STATS as 'server' | 'static' | 'json' | 'disabled',
       })
     );
   }

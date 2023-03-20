@@ -8,9 +8,7 @@ export default {
   title: 'widget/SidebarItem',
   component: SidebarItem,
 } as ComponentMeta<typeof SidebarItem>;
-const Template: ComponentStory<typeof SidebarItem> = (args) => (
-  <SidebarItem {...args} />
-);
+const Template: ComponentStory<typeof SidebarItem> = (args) => <SidebarItem {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

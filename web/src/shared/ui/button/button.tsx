@@ -31,7 +31,7 @@ export const Button: FC<IButtonProps> = memo((props: IButtonProps) => {
   const {
     className,
     children,
-    theme,
+    theme = 'outline',
     square,
     size = ButtonSize.M,
     isColorInverted,
@@ -41,15 +41,11 @@ export const Button: FC<IButtonProps> = memo((props: IButtonProps) => {
 
   return (
     <button
-      className={classNames(
-        classes.button,
-        [className, classes[theme], classes[size]],
-        {
-          [classes.square]: square,
-          [classes.invertedColor]: isColorInverted,
-          [classes.disabled]: disabled,
-        }
-      )}
+      className={classNames(classes.button, [className, classes[theme], classes[size]], {
+        [classes.square]: square,
+        [classes.invertedColor]: isColorInverted,
+        [classes.disabled]: disabled,
+      })}
       type="button"
       disabled={disabled}
       {...restProps}

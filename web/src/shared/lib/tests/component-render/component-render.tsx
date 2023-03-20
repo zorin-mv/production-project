@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 import { StoreProvider } from 'app/providers/store-provider';
 import { ReactNode } from 'react';
@@ -12,10 +11,7 @@ export interface IComponentRenderOptions {
   initialState?: DeepPartial<IStateSchema>;
 }
 
-export function componentRender(
-  component: ReactNode,
-  options: IComponentRenderOptions = {}
-) {
+export function componentRender(component: ReactNode, options: IComponentRenderOptions = {}) {
   const { route = '/', initialState } = options;
 
   return render(

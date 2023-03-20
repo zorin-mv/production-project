@@ -1,34 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserProfileService } from './user-profile.service';
-import { CreateUserProfileDto } from './dto/create-user-profile.dto';
-import { UpdateUserProfileDto } from './dto/update-user-profile.dto';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ERRORS } from 'src/constants/errors';
+import { User } from 'src/decorators/user';
 
-@Controller('user-profile')
+import { JwtAuthenticationGuard } from '../../guards/auth.guard';
+import { CreateUserProfileDto } from './dto/create-user-profile.dto';
+
+import { USER_PROFILE_ERRORS, USER_PROFILE_ROUTES } from './user-profile.constants';
+
+import { UserProfileService } from './user-profile.service';
+
+@ApiTags(USER_PROFILE_ROUTES.main)
+@Controller(USER_PROFILE_ROUTES.main)
 export class UserProfileController {
   constructor(private readonly userProfileService: UserProfileService) {}
 
-  @Post()
-  create(@Body() createUserProfileDto: CreateUserProfileDto) {
-    return this.userProfileService.create(createUserProfileDto);
+  @Post(USER_PROFILE_ROUTES.create)
+  @ApiOperation({ summary: USER_PROFILE_ROUTES.create })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: ERRORS.userNotFound,
+  })
+  @HttpCode(HttpStatus.CREATED)
+  @UseGuards(JwtAuthenticationGuard)
+  public async createProfile(@Body() body: CreateUserProfileDto, @User('id') id: string) {
+    return this.userProfileService.createProfile(body, id);
   }
 
-  @Get()
-  findAll() {
-    return this.userProfileService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userProfileService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserProfileDto: UpdateUserProfileDto) {
-    return this.userProfileService.update(+id, updateUserProfileDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userProfileService.remove(+id);
+  @Get(USER_PROFILE_ROUTES.getUserProfileByToken)
+  @ApiOperation({ summary: USER_PROFILE_ROUTES.getUserProfileByToken })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: ERRORS.userNotFound,
+  })
+  @ApiResponse({
+    status: HttpStatus.CONFLICT,
+    description: USER_PROFILE_ERRORS.profileNotExist,
+  })
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthenticationGuard)
+  public async getProfileByToken(@User('id') id: string) {
+    return this.userProfileService.getUserProfileByToken(id);
   }
 }

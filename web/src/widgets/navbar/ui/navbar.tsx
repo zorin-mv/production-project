@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/class-names';
 import { Button } from 'shared/ui/button';
 
-import { useLazyLogOutQuery } from 'features/auth/model/services/auth/auth.api';
+import { useLazyLogOutQuery } from 'features/auth/model/services/auth-api/auth.api';
 import classes from './navbar.module.scss';
 
 interface INavBarProps {
@@ -48,9 +48,7 @@ export const NavBar = memo(({ className }: INavBarProps) => {
 
   return (
     <div className={classNames(classes.navbar, [className])}>
-      {isAuthModalOpen ? (
-        <LoginModal isOpen={isAuthModalOpen} onClose={onCloseModal} />
-      ) : null}
+      {isAuthModalOpen ? <LoginModal isOpen={isAuthModalOpen} onClose={onCloseModal} /> : null}
       <div className={classes.content}>
         <Button onClick={onShowModal} theme="clear" isColorInverted>
           {t('Login')}

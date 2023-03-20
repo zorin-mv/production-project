@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { getUserData } from 'entities/user';
 import { USER_ROLES } from 'entities/user/constants/roles';
 import { IStateSchema } from 'shared/config/store';
@@ -11,6 +10,7 @@ describe('get-user-data', () => {
         id: 'test1',
         email: 'test@mail.com',
         role: USER_ROLES.USER,
+        created: new Date(),
       },
     };
 

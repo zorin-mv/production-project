@@ -18,18 +18,10 @@ interface IAppLinkProps extends LinkProps {
 }
 
 export const AppLink = (props: IAppLinkProps) => {
-  const {
-    children,
-    className,
-    theme = AppLinkTheme.PRIMARY,
-    ...restProps
-  } = props;
+  const { children, className, theme = AppLinkTheme.PRIMARY, ...restProps } = props;
 
   return (
-    <Link
-      className={classNames(classes.appLink, [className, classes[theme]])}
-      {...restProps}
-    >
+    <Link className={classNames(classes.appLink, [className, classes[theme]])} {...restProps}>
       {children}
     </Link>
   );

@@ -10,18 +10,10 @@ interface ILoginModalProps {
   className?: string;
 }
 
-export const LoginModal = memo(
-  ({ className, isOpen, onClose }: ILoginModalProps) => (
-    <Modal
-      data-testid="login-modal"
-      className={className}
-      onClose={onClose}
-      isOpen={isOpen}
-      lazy
-    >
-      <Suspense fallback={<Spinner />}>
-        <LoginFormAsync onSuccess={onClose} />
-      </Suspense>
-    </Modal>
-  )
-);
+export const LoginModal = memo(({ className, isOpen, onClose }: ILoginModalProps) => (
+  <Modal data-testid="login-modal" className={className} onClose={onClose} isOpen={isOpen} lazy>
+    <Suspense fallback={<Spinner />}>
+      <LoginFormAsync onSuccess={onClose} />
+    </Suspense>
+  </Modal>
+));

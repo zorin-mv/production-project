@@ -1,9 +1,4 @@
-import {
-  AnyAction,
-  EnhancedStore,
-  Reducer,
-  ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { IProfileSchema } from 'entities/profile';
 import { IUserSchema } from 'entities/user/model/types/user';
 import { IAuthSchema } from 'features/auth/model/types/auth.schema';

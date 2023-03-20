@@ -7,9 +7,7 @@ export default {
   title: 'features/auth/LoginModal',
   component: LoginModal,
 } as ComponentMeta<typeof LoginModal>;
-const Template: ComponentStory<typeof LoginModal> = (args) => (
-  <LoginModal {...args} />
-);
+const Template: ComponentStory<typeof LoginModal> = (args) => <LoginModal {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
