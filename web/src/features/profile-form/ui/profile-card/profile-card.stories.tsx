@@ -1,11 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CURRENCY } from 'shared/constant/common';
+import { withRHF } from 'shared/lib/storybook/form-decorator';
 import { StoreDecorator } from 'shared/lib/storybook/store-decorator';
 
 import { ProfileCard } from './profile-card';
 
 export default {
-  title: 'entities/profile/ProfileCard',
+  title: 'feature/ProfileForm/ProfileCard',
   component: ProfileCard,
 } as ComponentMeta<typeof ProfileCard>;
 const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
@@ -27,4 +28,5 @@ Default.decorators = [
       },
     },
   }),
+  withRHF(),
 ];

@@ -1,12 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Text, TEXT_THEME } from './text';
+import { TextComponent, TEXT_THEME } from './text';
 
 export default {
   title: 'shared/Text',
-  component: Text,
-} as ComponentMeta<typeof Text>;
-const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
+  component: TextComponent,
+} as ComponentMeta<typeof TextComponent>;
+const Template: ComponentStory<typeof TextComponent> = (args) => <TextComponent {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

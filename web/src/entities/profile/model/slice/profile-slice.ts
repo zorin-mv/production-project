@@ -1,36 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IProfile } from 'entities/profile/model/types/profle';
 
-import { IResponseError } from 'shared/types/error-response.typings';
 import { IProfileSchema } from '../types/profle';
 
 import { profileApi } from '../services/profile-api/profile.api';
 
-const initialState: IProfileSchema = { readonly: true, isLoading: false };
+const initialState: IProfileSchema = {
+  readonly: true,
+  data: {
+    age: 0,
+    avatar: '',
+    city: '',
+    country: '',
+    currency: 'USD',
+    firstName: '',
+    lastName: '',
+    id: '',
+  },
+};
 
 export const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
+  reducers: {
+    setReadonly: (state: IProfileSchema, action: PayloadAction<boolean>) => {
+      state.readonly = action.payload;
+    },
+    updateProfile: (state: IProfileSchema, action: PayloadAction<IProfile>) => {
+      state.data = {
+        ...state.data,
+        ...action.payload,
+      };
+    },
+  },
   extraReducers: (builder) => {
-    builder
-      .addMatcher(profileApi.endpoints.fetchProfileByToken.matchPending, (state) => {
-        state.error = undefined;
-        state.isLoading = true;
-      })
-      .addMatcher(profileApi.endpoints.fetchProfileByToken.matchFulfilled, (state, { payload }) => {
-        state.data = payload;
-        state.error = undefined;
-        state.isLoading = false;
-      })
-      .addMatcher(profileApi.endpoints.fetchProfileByToken.matchRejected, (state, { payload }) => {
-        if (payload?.data) {
-          state.error = (payload as IResponseError).data.message;
-        } else {
-          state.error = 'Something went wrong';
-        }
-        state.isLoading = false;
-        state.data = undefined;
-      });
+    builder.addMatcher(profileApi.endpoints.fetchProfileByToken.matchFulfilled, (state, { payload }) => {
+      state.data = payload;
+    });
   },
 });
 

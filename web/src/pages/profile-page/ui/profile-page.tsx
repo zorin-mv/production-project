@@ -1,5 +1,5 @@
-import { ProfileCard, useFetchProfileByTokenQuery } from 'entities/profile';
-import { profileReducer } from 'entities/profile/model/slice/profile-slice';
+import { profileReducer } from 'entities/profile';
+import { ProfileForm } from 'features/profile-form';
 import { classNames } from 'shared/lib/class-names';
 import { DynamicModuleLoader, TReducersList } from 'shared/lib/components/dynamic-module-loader';
 
@@ -13,15 +13,12 @@ const redusersList: TReducersList = {
   profile: profileReducer,
 };
 
-const ProfilePage = ({ className }: IProfilePageProps) => {
-  useFetchProfileByTokenQuery();
-  return (
-    <DynamicModuleLoader reducers={redusersList}>
-      <div data-testid="profile-page" className={classNames(classes.profilePage, [className])}>
-        <ProfileCard />
-      </div>
-    </DynamicModuleLoader>
-  );
-};
+const ProfilePage = ({ className }: IProfilePageProps) => (
+  <DynamicModuleLoader reducers={redusersList}>
+    <div data-testid="profile-page" className={classNames(classes.profilePage, [className])}>
+      <ProfileForm />
+    </div>
+  </DynamicModuleLoader>
+);
 
 export default ProfilePage;

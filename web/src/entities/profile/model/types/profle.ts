@@ -1,7 +1,6 @@
 import { TCurrency } from 'shared/constant/common';
 
 export interface IProfile {
-  id: string;
   firstName: string;
   lastName: string;
   age: number;
@@ -9,11 +8,10 @@ export interface IProfile {
   city: string;
   avatar: string;
   currency: TCurrency;
+  id?: string;
 }
 
 export interface IProfileSchema {
   readonly: boolean;
-  isLoading: boolean;
-  data?: IProfile;
-  error?: string;
+  data: IProfile;
 }

@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/class-names';
 import { DynamicModuleLoader, TReducersList } from 'shared/lib/components/dynamic-module-loader/dynamic-module-loader';
 import { Button } from 'shared/ui/button';
 import { Input } from 'shared/ui/input';
-import { Text } from 'shared/ui/text';
+import { TextComponent } from 'shared/ui/text';
 
 import { IResponseError } from 'shared/types/error-response.typings';
 import { authReducer } from '../../model/slice/auth.slice';
@@ -26,9 +26,9 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div data-testid="login-form" className={classNames(classes.loginForm, [className])}>
-        <Text title={t('auth-form')} />
+        <TextComponent title={t('auth-form')} />
         {error ? (
-          <Text
+          <TextComponent
             className={classes.error}
             theme="error"
             text={'data' in error ? (error as IResponseError).data.message : 'error'}

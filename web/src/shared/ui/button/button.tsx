@@ -6,6 +6,7 @@ import classes from './button.module.scss';
 export const ButtonTheme = {
   CLEAR: 'clear',
   OUTLINE: 'outline',
+  OUTLINE_RED: 'outlineRed',
   BACKGROUND: 'background',
 } as const;
 

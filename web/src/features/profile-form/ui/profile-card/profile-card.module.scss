@@ -1,0 +1,18 @@
+.profileCard {
+  padding: 20px;
+  border: 2px solid var(--inverted-bg-color);
+}
+
+.loading,
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}

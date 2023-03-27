@@ -17,5 +17,8 @@
   "email": "Enter Email",
   "auth-form": "Auth Form",
   "Logout": "Logout",
-  "profilePageNav": "Profile"
+  "profilePageNav": "Profile",
+  "required": "This is a required field",
+  "letters": "The field must contain only letters",
+  "most40": "The field must be at most 40 characters"
 }
