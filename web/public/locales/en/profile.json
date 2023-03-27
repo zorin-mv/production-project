@@ -2,5 +2,7 @@
   "Profile": "Profile",
   "edit": "Edit",
   "firstName": "Your Firstname",
-  "lastName": "Your Lastname"
+  "lastName": "Your Lastname",
+  "cancel": "Cancel",
+  "save": "Save"
 }

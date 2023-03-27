@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,15 +23,15 @@ export const useLoginFormState = ({ onSuccess }: IUseLoginFormStateProps) => {
   const password = useSelector(getAuthPassword);
 
   const onChangeEmail = useCallback(
-    (email: string) => {
-      dispatch(authActions.setEmail(email));
+    (event: ChangeEvent<HTMLInputElement>) => {
+      dispatch(authActions.setEmail(event.target.value));
     },
     [dispatch]
   );
 
   const onChangePassword = useCallback(
-    (password: string) => {
-      dispatch(authActions.setPassword(password));
+    (event: ChangeEvent<HTMLInputElement>) => {
+      dispatch(authActions.setPassword(event.target.value));
     },
     [dispatch]
   );
